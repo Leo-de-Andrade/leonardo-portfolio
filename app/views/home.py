@@ -1,18 +1,20 @@
 import sys
 from pathlib import Path
 
-# Streamlit's navigation runner doesn't automatically add the app/ folder to
-# sys.path when executing a page inside views/, so "import utils" would fail
-# without this. This adds the parent folder (app/) explicitly.
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 import streamlit as st
 from utils import apply_custom_css
 
-st.set_page_config(page_title="Portfolio | Leonardo de Andrade", page_icon="📊", layout="wide")
+st.set_page_config(
+    page_title="Portfolio | Leonardo de Andrade",
+    page_icon="📊",
+    layout="wide",
+    initial_sidebar_state="collapsed",
+)
 apply_custom_css()
 
-st.title("📊 Financial Analytics Portfolio")
+st.markdown('<h1 class="gradient-text">📊 Financial Analytics Portfolio</h1>', unsafe_allow_html=True)
 st.markdown("#### by Leonardo de Andrade")
 
 st.markdown(
@@ -43,4 +45,6 @@ st.markdown(
 )
 
 st.divider()
-st.page_link("views/dashboard.py", label="Open the Dashboard →", icon="📊")
+
+if st.button("Open the Dashboard →", type="primary"):
+    st.switch_page("views/dashboard.py")

@@ -11,5 +11,5 @@ import streamlit as st
 home_page = st.Page("views/home.py", title="Home", icon="🏠", default=True)
 dashboard_page = st.Page("views/dashboard.py", title="Dashboard", icon="📊")
 
-pg = st.navigation([home_page, dashboard_page])
+pg = st.navigation([home_page, dashboard_page], position="hidden")
 pg.run()
